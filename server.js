@@ -6,6 +6,12 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+	next();
+});
+
 app.post("/asterisk-ws-api/api/CallWebHook", function (req, res) {
 	console.log(req.body);
 	res.send({ result: 0 });
